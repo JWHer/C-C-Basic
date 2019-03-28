@@ -52,7 +52,7 @@ int deQue(Queue *q) {
 	Node* del = q->front;
 	int data = del->data;
 	q->front = q->front->next;
-	if (q->front == NULL) q->rear == NULL;
+	if (q->front == NULL) q->rear = NULL;
 	free(del);
 	return data;
 }
@@ -85,8 +85,8 @@ void insertionSort(int ary[]) {
 }
 //버블정렬
 void bubbleSort(int ary[]) {
-	for (int i = 0; i < MAX_V; i++) {
-		for (int j = 0; j < MAX_V - 1; j++)
+	for (int i = 0; i < MAX_V - 1; i++) {
+		for (int j = 0; j < MAX_V - i - 1; j++)
 			if (ary[j] > ary[j + 1]) swap(&ary[j], &ary[j + 1]);
 		//show(ary);
 	}
@@ -178,7 +178,7 @@ void radixSort(int ary[]) {
 	free(que);
 }
 
-void main() {
+int main() {
 	srand((unsigned)time(NULL));
 	clock_t start, end;
 
@@ -237,4 +237,6 @@ void main() {
 	//show(ary);
 	printf("기수정렬 걸린시간 : %lf\n", (double)(end - start) / 1000);
 	copy(cpy, ary);
+	
+	return 0;
 }
