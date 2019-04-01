@@ -94,19 +94,18 @@ void bubbleSort(int ary[]) {
 }
 //쉘  정렬
 void shellSort(int ary[]) {
-	int gap, key, k;
-	for (gap = MAX_V / 2; gap > 0; gap /= 2) {
-		if (gap % 2 == 0) gap++;
-		for (int i = 0; i < gap; i++) {
-			for (int j = i + gap; j < MAX_V; j += gap) {
-				key = ary[j];
-				for (k = j - gap; k >= i && ary[k] > key; k -= gap) {
-					ary[k + gap] = ary[k];
-				}
-				ary[k + gap] = key;
+	int gap, key, i, j;
+	gap = 1;
+	while(gap < MAX_V) gap = gap * 3 + 1;
+	while (gap > 1) {
+		gap /= 3;
+		for (i = gap; i < MAX_V; i++) {
+			key = ary[i];
+			for (j = i; j >= gap && ary[j - gap] > key; j -= gap) {
+				ary[j] = ary[j - gap];
 			}
+			ary[j] = key;
 		}
-		//show(ary);
 	}
 }
 //합병정렬
